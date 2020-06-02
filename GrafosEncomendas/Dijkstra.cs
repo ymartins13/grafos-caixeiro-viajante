@@ -14,7 +14,7 @@ namespace GrafosEncomendas
         private Dictionary<Nodo, Nodo> _antecessores;
         private Dictionary<Nodo, int> _distancia;
 
-        public Dijkstra(Grafo grafo)
+        public Dijkstra(DadosGrafo grafo)
         {
             _nodo = new List<Nodo>(grafo.Nodos);
             _arestas = new List<Aresta>(grafo.Arestas);

@@ -2,12 +2,12 @@
 
 namespace GrafosEncomendas.Entidades
 {
-    public class Grafo
+    public class DadosGrafo
     {
         public List<Nodo> Nodos { get; set; }
         public List<Aresta> Arestas { get; set; }
 
-        public Grafo(List<Nodo> nodos, List<Aresta> arestas)
+        public DadosGrafo(List<Nodo> nodos, List<Aresta> arestas)
         {
             Nodos = nodos;
             Arestas = arestas;
