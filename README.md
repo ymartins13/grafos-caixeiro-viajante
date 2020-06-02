@@ -1,10 +1,12 @@
-# Grafos - O Problema do Caixeiro Viajante
+# Grafos - Encomendas - Heurística do vizinho mais próximo
 
-Aplicação construída com .net Core, para execução de Heurística do vizinho mais próximo.
+Aplicação construída com .net Core (C#), para execução de Heurística do vizinho mais próximo (Dijkstra).
 
-Arquivos de entrada:
+A solução se baseia no percorrer da lista de arestas (trechos), buscando sempre, entre as opções, o trecho de menor custo, sem passar por pontos já visitados.
 
-* trechos: arquivo contendo os vértices e as distâncias entre eles (separados por espaço). Exemplo:
+Arquivos de entrada: os arquivos de entrada devem ser disponibilizados na pasta "Dados", na raiz do projeto. 
+
+* trechos: arquivo contendo os nodos e as distâncias entre eles (separados por espaço). Exemplo:
   ```sh
   LS SF 1
   SF LS 2
@@ -19,14 +21,15 @@ Arquivos de entrada:
   LV BC 1
   BC LV 1
   ```
-* origem/destino: arquivo contendo os vértices de origem e destino. Exemplo:
+* encomendas: arquivo contendo os nodos de origem e destino. Exemplo:
   ```sh
   SF WS
   LS BC
   WS BC
   ```
-Arquivo de saída:
-* rotas: arquivo contendo o melhor caminho identificado pela heurística para o vértices de origem/destino, e a distância total. Exemplo:
+Arquivo de saída: o arquivo de saída será gerado na pasta "Dados", na raiz do projeto. 
+
+* rotas: arquivo contendo o melhor caminho identificado pela heurística para os nodos de origem/destino, e a distância total (custo). Exemplo:
   ```sh
   SF WS 1
   LS LV BC 2
