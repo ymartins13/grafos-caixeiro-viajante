@@ -1,13 +1,11 @@
-﻿namespace GrafosCaixeiroViajante
+﻿namespace GrafosEncomendas.Entidades
 {
     public class Nodo
     {
-        public string Id { get; set; }
         public string Nome { get; set; }
 
-        public Nodo(string id, string nome)
+        public Nodo(string nome)
         {
-            Id = id;
             Nome = nome;
         }
     }

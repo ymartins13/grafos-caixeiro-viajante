@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GrafosCaixeiroViajante
+namespace GrafosEncomendas.Entidades
 {
     public class Grafo
     {

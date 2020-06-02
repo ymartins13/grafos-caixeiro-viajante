@@ -1,18 +1,16 @@
-﻿namespace GrafosCaixeiroViajante
+﻿namespace GrafosEncomendas.Entidades
 {
     public class Aresta
     {
-        public string Id { get; set; }
         public Nodo Destino { get; set; }
         public Nodo Origem { get; set; }
         public int Valor { get; set; }
 
-        public Aresta(string id, Nodo origem, Nodo destino, int peso)
+        public Aresta(Nodo origem, Nodo destino, int valor)
         {
-            Id = id;
             Origem = origem;
             Destino = destino;
-            Valor = peso;
+            Valor = valor;
         }
     }
 }
