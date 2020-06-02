@@ -39,9 +39,10 @@ namespace GrafosEncomendas
             }
         }
 
-        public List<Nodo> ObterRota(Nodo nodoDestino)
+        public Percurso ObterRota(Nodo nodoDestino)
         {
             LinkedList<Nodo> caminho = new LinkedList<Nodo>();
+            int distancia = 0;
             Nodo aux = nodoDestino;
 
             if (!_antecessores.TryGetValue(aux, out _))
@@ -51,32 +52,12 @@ namespace GrafosEncomendas
             caminho.AddLast(aux);
             while (_antecessores.TryGetValue(aux, out _))
             {
+                distancia += _arestas.FindLast(a => a.Origem.Equals(_antecessores[aux]) && a.Destino.Equals(aux)).Valor;
                 aux = _antecessores[aux];
                 caminho.AddLast(aux);
+
             }
-
-            return caminho.Reverse().ToList();
-        }
-
-        public int ObterDistanciaTrajeto()
-        {
-            _nodosResolvidos = new List<Nodo>();
-            _nodosNaoResolvidos = new List<Nodo>();
-
-            int distancia = 0;
-            for (int i = 0; i < _nodo.Count - 1; i++)
-            {
-                List<Nodo> vizinhos = ObterNodosVizinhos(_nodo[i]);
-                if (vizinhos.Exists(w => w.ToString().Equals(_nodo[i + 1].ToString())))
-                {
-                    distancia += ObterDistancia(_nodo[i], _nodo[i + 1]);
-                }
-                else
-                {
-                    throw new Exception("Rota não existente");
-                }
-            }
-            return distancia;
+            return new Percurso(caminho.Reverse().ToList(), distancia);
         }
 
         private void ObterDistanciasMinimas(Nodo nodo)
@@ -106,7 +87,8 @@ namespace GrafosEncomendas
                     return aresta.Valor;
                 }
             }
-            throw new Exception();
+            return 0;
+            //throw new Exception();
         }
 
         private List<Nodo> ObterNodosVizinhos(Nodo nodo)

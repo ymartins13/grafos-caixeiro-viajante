@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 
 namespace GrafosEncomendas.Util
@@ -9,18 +7,21 @@ namespace GrafosEncomendas.Util
     {
         public static string ReadFileTxt(string arquivo)
         {
-            if (File.Exists(arquivo) && Path.HasExtension(".txt"))
+            string path = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, arquivo);
+            if (File.Exists(path) && Path.HasExtension(".txt"))
             {
-                return File.ReadAllText(arquivo);
+                return File.ReadAllText(path);
             }
 
             return null;
         }
         public static string[] ReadLinesFileTxt(string arquivo)
         {
-            if (File.Exists(arquivo) && Path.HasExtension(".txt"))
-            {   
-                return File.ReadAllLines(arquivo);
+            string path = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, arquivo);
+
+            if (File.Exists(path) && Path.HasExtension(".txt"))
+            {
+                return File.ReadAllLines(path);
             }
 
             return null;
@@ -28,9 +29,11 @@ namespace GrafosEncomendas.Util
 
         public static string WriteFileTxt(string caminho, string conteudo)
         {
-            File.WriteAllText(caminho, conteudo, Encoding.UTF8);
+            string path = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, caminho);
 
-            return Path.GetFullPath(caminho);
+            File.WriteAllText(path, conteudo, Encoding.UTF8);
+
+            return Path.GetFullPath(path);
         }
     }
 }

@@ -1,7 +1,5 @@
-﻿using GrafosEncomendas.Entidades;
-using GrafosEncomendas.Util;
+﻿using GrafosEncomendas.Util;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -9,10 +7,10 @@ namespace GrafosEncomendas
 {
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            var trechos = FileUtil.ReadLinesFileTxt("trechos.txt");
-            var encomendas = FileUtil.ReadLinesFileTxt("encomendas.txt");
+            var trechos = FileUtil.ReadLinesFileTxt(@"Dados\trechos.txt");
+            var encomendas = FileUtil.ReadLinesFileTxt(@"Dados\encomendas.txt");
 
             var grafo = GrafoUtil.MontarGrafo(trechos);
 
@@ -29,24 +27,21 @@ namespace GrafosEncomendas
 
                     dijkstra.ExecutarHeuristica(nodoOrigem);
 
-                    List<Nodo> percurso = dijkstra.ObterRota(nodoDestino);
+                    var percurso = dijkstra.ObterRota(nodoDestino);
 
-                    int distanciaPercurso = dijkstra.ObterDistanciaTrajeto();
-
-                    for (int i = 0; i < percurso.Count; i++)
+                    foreach (var nodo in percurso.NodosPercurso)
                     {
-                        rotas.Append($"{percurso[i].Nome} ");
+                        rotas.Append($"{nodo.Nome} ");
                     }
-                    rotas.Append($"{distanciaPercurso}");
+                    rotas.Append($"{percurso.Custo}");
                     rotas.Append("\n");
                 }
             }
 
             Console.WriteLine(rotas.ToString());
 
-            var caminho = FileUtil.WriteFileTxt("rotas.txt", rotas.ToString());
-            Console.WriteLine($"Arquivo gerado com sucesso!! {caminho}");
-            Console.ReadKey();
+            var caminho = FileUtil.WriteFileTxt(@"Dados\rotas.txt", rotas.ToString());
+            Console.WriteLine($"Arquivo de saída salvo em: {caminho}");
         }
     }
 }
