@@ -1,13 +1,13 @@
 ﻿using GrafosEncomendas.Entidades;
+using GrafosEncomendas.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace GrafosEncomendas
 {
-    public class Dijkstra
+    public class Dijkstra : IDijkstra
     {
-        private readonly List<Nodo> _nodo;
         private readonly List<Aresta> _arestas;
         private List<Nodo> _nodosResolvidos;
         private List<Nodo> _nodosNaoResolvidos;
@@ -16,7 +16,6 @@ namespace GrafosEncomendas
 
         public Dijkstra(DadosGrafo grafo)
         {
-            _nodo = new List<Nodo>(grafo.Nodos);
             _arestas = new List<Aresta>(grafo.Arestas);
         }
 
@@ -88,7 +87,6 @@ namespace GrafosEncomendas
                 }
             }
             return 0;
-            //throw new Exception();
         }
 
         private List<Nodo> ObterNodosVizinhos(Nodo nodo)
@@ -105,29 +103,29 @@ namespace GrafosEncomendas
             return vizinhos;
         }
 
-        private Nodo BuscarMenor(List<Nodo> vertices)
+        private Nodo BuscarMenor(List<Nodo> nodos)
         {
             Nodo minimo = null;
-            foreach (Nodo vertice in vertices)
+            foreach (Nodo nodo in nodos)
             {
                 if (minimo == null)
                 {
-                    minimo = vertice;
+                    minimo = nodo;
                 }
                 else
                 {
-                    if (BuscaMenorDistancia(vertice) < BuscaMenorDistancia(minimo))
+                    if (BuscaMenorDistancia(nodo) < BuscaMenorDistancia(minimo))
                     {
-                        minimo = vertice;
+                        minimo = nodo;
                     }
                 }
             }
             return minimo;
         }
 
-        private bool Resolvido(Nodo vertice)
+        private bool Resolvido(Nodo nodo)
         {
-            return _nodosResolvidos.Contains(vertice);
+            return _nodosResolvidos.Contains(nodo);
         }
 
         private int BuscaMenorDistancia(Nodo destino)

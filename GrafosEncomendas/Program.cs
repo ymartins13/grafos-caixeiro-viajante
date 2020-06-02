@@ -1,4 +1,5 @@
-﻿using GrafosEncomendas.Util;
+﻿using GrafosEncomendas.Interfaces;
+using GrafosEncomendas.Util;
 using System;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,8 @@ namespace GrafosEncomendas
     {
         static void Main(string[] args)
         {
-            var trechos = FileUtil.ReadLinesFileTxt(@"Dados\trechos.txt");
-            var encomendas = FileUtil.ReadLinesFileTxt(@"Dados\encomendas.txt");
+            var trechos = FileUtil.LerLinhasArquivoTxt(@"Dados\trechos.txt");
+            var encomendas = FileUtil.LerLinhasArquivoTxt(@"Dados\encomendas.txt");
 
             var grafo = GrafoUtil.MontarGrafo(trechos);
 
@@ -23,7 +24,7 @@ namespace GrafosEncomendas
                     var nodoOrigem = grafo.Nodos.FirstOrDefault(x => x.Nome == valores[0]);
                     var nodoDestino = grafo.Nodos.FirstOrDefault(x => x.Nome == valores[1]);
 
-                    Dijkstra dijkstra = new Dijkstra(grafo);
+                    IDijkstra dijkstra = new Dijkstra(grafo);
 
                     dijkstra.ExecutarHeuristica(nodoOrigem);
 
@@ -40,7 +41,7 @@ namespace GrafosEncomendas
 
             Console.WriteLine(rotas.ToString());
 
-            var caminho = FileUtil.WriteFileTxt(@"Dados\rotas.txt", rotas.ToString());
+            var caminho = FileUtil.EscreverArquivoTxt(@"Dados\rotas.txt", rotas.ToString());
             Console.WriteLine($"Arquivo de saída salvo em: {caminho}");
         }
     }
