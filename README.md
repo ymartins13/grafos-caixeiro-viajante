@@ -4,8 +4,7 @@ Aplicação construída com .net Core (C#), para execução de Heurística do vi
 
 A solução se baseia no percorrer da lista de arestas (trechos), buscando sempre, entre as opções, o trecho de menor custo, sem passar por pontos já visitados.
 
-Arquivos de entrada:
-Os arquivos de entrada devem ser disponibilizados na parta "Dados", na raiz do projeto. 
+Arquivos de entrada: os arquivos de entrada devem ser disponibilizados na pasta "Dados", na raiz do projeto. 
 
 * trechos: arquivo contendo os nodos e as distâncias entre eles (separados por espaço). Exemplo:
   ```sh
@@ -22,13 +21,14 @@ Os arquivos de entrada devem ser disponibilizados na parta "Dados", na raiz do p
   LV BC 1
   BC LV 1
   ```
-* origem/destino: arquivo contendo os nodos de origem e destino. Exemplo:
+* encomendas: arquivo contendo os nodos de origem e destino. Exemplo:
   ```sh
   SF WS
   LS BC
   WS BC
   ```
-Arquivo de saída:
+Arquivo de saída: o arquivo de saída será gerado na pasta "Dados", na raiz do projeto. 
+
 * rotas: arquivo contendo o melhor caminho identificado pela heurística para os nodos de origem/destino, e a distância total (custo). Exemplo:
   ```sh
   SF WS 1
